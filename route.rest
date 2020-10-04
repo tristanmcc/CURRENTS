@@ -1,0 +1,31 @@
+GET http://localhost:3000/users
+
+'localhost:3000/users'
+
+
+### 
+
+GET http://localhost:3000/users/5f791423f59da7328857961f
+
+
+#### 
+
+POST http://localhost:3000/users
+ Content-Type: application/json
+
+
+ {
+     "name": "Che Coelho",
+     "alias": "Che",
+     "password": "CTC",
+     "creditLimit": -200,
+     "currentBalance": 0,
+     "totalSpent": 0,
+     "totalEarned": 0,
+     "participation": 0
+ }
+
+
+### 
+
+DELETE http://localhost:3000/users/5f79170f2a9cf4475c2d0ef4
