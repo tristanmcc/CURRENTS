@@ -15,8 +15,8 @@ POST http://localhost:3000/users
 
 
  {
-     "name": "Che Coelho",
-     "alias": "Che",
+     "username": "Che Coelho",
+     "alias": "CheTC",
      "password": "CTC",
      "creditLimit": -200,
      "currentBalance": 0,
@@ -28,4 +28,25 @@ POST http://localhost:3000/users
 
 ### 
 
-DELETE http://localhost:3000/users/5f79170f2a9cf4475c2d0ef4
+DELETE http://localhost:3000/users/5f791743eae9241fb8b86c27
+
+### 
+
+PATCH http://localhost:3000/users/5f7911c0f59da7328857961e
+Content-Type: application/json
+
+{
+    "name": "New name"
+}
+
+###
+
+
+
+
+POST http://localhost:3000/users/login
+
+{
+    "alias": "Che",
+     "password": "CTC",
+}

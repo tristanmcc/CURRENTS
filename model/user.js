@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
 
-    name: {
+    username: {
         type: String,
         required: true
     },
@@ -18,25 +18,30 @@ const userSchema = new mongoose.Schema({
     }, 
     creditLimit: {
         type: Number,
-        required: true
+        default: -200
+        
     },
     currentBalance: {
         type: Number,
-        required: true
+        default: 0
+        
     },
     totalSpent: {
         type: Number,
-        required: true
+        default: 0
+        
     },
     totalEarned: {
         type: Number,
-        required: true
+        default: 0
+        
     }, 
     participation: {
         type: Number,
-        required: true
+        default: 0
+        
     }
     
-})
+}, {timestamps: true} );                //takes time of action
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema); 
