@@ -2,6 +2,9 @@ const express = require('express');                         // integrates expres
 const router = express.Router();
 const User = require('../model/user')
 const bcrypt = require('bcrypt')
+var bodyParser = require('body-parser');
+
+
 
 
 //Get all users route
@@ -25,11 +28,11 @@ router.get('/:id', getUser, (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const salt = await bcrypt.genSalt()
-        const hashedPassword = await bcrypt.hash(req.body.password, salt) 
+        const hashedPassword = await bcrypt.hash(req.body.password, salt)
         const user = new User({
-        username: req.body.username,
+        Name: req.body.Name,
         alias: req.body.alias ,
-        password: hashedPassword,
+        password: req.body.password,
         creditLimit: req.body.creditLimit,
         currentBalance: req.body.currentBalance,
         totalSpent: req.body.totalSpent,

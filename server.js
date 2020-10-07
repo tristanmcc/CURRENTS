@@ -8,6 +8,7 @@ const app = express();                                     //invokes express to 
 const expressLayouts = require('express-ejs-layouts');    
 const indexRouter = require('./routes/index')               //creates a router for index file
 const userRouter = require('./routes/users')
+const cors = require('cors')
 
 const mongoose = require('mongoose')
 var bodyParser = require('body-parser');
@@ -35,9 +36,12 @@ app.set('view engine', 'ejs')
 app.set('views,', __dirname + '/views')
 app.set('layout', 'layouts/layout')
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(expressLayouts)
 app.use(express.static('public'))
 app.use(express.json())
+app.use(cors());
+app.use(express.json());
 
 //Create User
 
