@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="style_login.css" type="text/css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <div class ="login-page">
+    <div>
+        <form id="login_form" class = "login-form" method="POST" action="/login">
+            <input id = email name="email"  type="text" placeholder="email">
+            <input id ="password" name="password" type="password" placeholder="password"/>
+            <button type="submit" >login</button>
+            <p class="message">Not Registered? <a href="/">Register</a></p>
+        </form>
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>  
+    <script>
+        $('.message a').click(function(){
+        $('form').animate( {height: "toggle", opacity:"toggle"}, "slow");
+        });
+    </script>
+    <script type="text/javascript" src = "login_script.js"></script>
+</body>
+</html>
