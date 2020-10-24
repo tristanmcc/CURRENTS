@@ -13,18 +13,23 @@
     <input type = "password" name="password"  />
     <div class="password error"></div>
     
-    <button>Submit</button>
+    <button id="submit_update">Submit</button>
+
+    <button id="delete_profile">Delete Profile</button>
 </form>
 
 
 <script>
     const form  = document.querySelector('form');
+    const submitUpdate = document.getElementById('submit_update')
+    const deleteProfile = document.getElementById('delete_profile')
+
     
     const alaisError = document.querySelector('.alias.error');
     const passwordError = document.querySelector('.password.error');
     
 
-    form.addEventListener('submit', async (e) => {
+    submitUpdate.addEventListener('click', async (e) => {
         e.preventDefault();
         //reset errors
 
@@ -58,6 +63,35 @@
             else {
                 location.assign('/');
             }
+            
+        } catch (err) {
+            console.log('err');
+
+        } 
+
+    })
+
+    deleteProfile.addEventListener('click', async (e) => {
+        e.preventDefault();
+        
+
+        
+
+        
+
+        
+
+        try {
+            const res = await fetch('/delete_user', {
+                method: 'DELETE',
+                
+            });
+            const data = await res.json();
+            if (data===200) {
+            
+            location.assign('/');
+            }
+            
             
         } catch (err) {
             console.log(err);
