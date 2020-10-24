@@ -11,6 +11,9 @@
     <label for = "amount">amount</label>
     <input id="amount" type = "number" name="amount" required />
     <div class="amount error"></div>
+    <label for = "reference">payment reference</label>
+    <input id="reference" type = "text" name="reference" required />
+    <div class="reference error"></div>
     
     <button>Submit</button>
 </form>
@@ -21,6 +24,7 @@
     
     const aliasError = document.querySelector('.alias.error');
     const amountError = document.querySelector('.amount.error');
+    const referenceError = document.querySelector('.reference.error');
     
 
     form.addEventListener('submit', async (e) => {
@@ -31,11 +35,14 @@
         
         aliasError.textContent = '';
         amountError.textContent = '';
+        referenceError.textContent = '';
             
         //get the values
         
         const alias = form.alias.value;
         const amount = form.amount.value;
+        const reference = form.reference.value;
+
         
 
         try {
@@ -44,7 +51,8 @@
                 method: 'POST',
                 body: JSON.stringify({ 
                     alias: alias, 
-                    amount: amount}),
+                    amount: amount,
+                    reference: reference}),
                     
                     headers: { 'Content-Type': 'application/json'}
 

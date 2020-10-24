@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
 
     email: {
         type: String,
-        required: true,
+        required: [true, 'Please enter an email'],
         unique: [true, 'Please enter an email'],
         // match: /.{1,}@[^.]{1,}/,
         validate: [isEmail, 'Please enter a valid email']
@@ -61,6 +61,15 @@ const userSchema = new mongoose.Schema({
     spendingCapacity: {
         type: Number,
         default: 200
+    },
+
+    peers: {
+        type: Array
+    },
+
+    transaction_count: {
+        type: Number,
+        default: 0
     }
     
     
@@ -94,7 +103,7 @@ userSchema.statics.login = async function(email, password) {
 }
 
 //static method to find user by alias for transaction
-userSchema.statics.transact = async function(alias, amount, res) {
+userSchema.statics.transact = async function(alias, res) {
     const beneficiery = await this.findOne({ alias });
     if (beneficiery) {
         
