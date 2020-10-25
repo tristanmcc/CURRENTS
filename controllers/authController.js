@@ -4,7 +4,12 @@ const Transaction = require('../model/transaction');
 const jwt = require('jsonwebtoken');
 
 const getUser = require('../middleware/authMiddleware')
-const checkSpendingCapacity = require('../middleware/authMiddleware')
+const checkSpendingCapacity = require('../middleware/authMiddleware');
+const user = require('../model/user');
+
+
+
+
 
 
 
@@ -286,6 +291,35 @@ module.exports.update_patch =  async  (req, res) => {
 
 }
 
+<<<<<<< HEAD
+=======
+module.exports.user_delete = async (req, res) => {
+    
+    
+    const token = req.cookies.jwt //get jwt from cookies
+    
+    const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET) //get user ID from token in jwt
+
+    try {
+
+       const userId = decodedToken.id
+       const user = await User.findByIdAndRemove(userId)
+       res.status(200).json(200)
+
+       
+
+    } catch {
+
+    }
+
+    
+    
+     
+ }
+
+
+
+>>>>>>> 5c19161c347f319e56aec8a1c66040afebe1e69b
 module.exports.ledger_get = async (req, res) => {
 
     const userTransactions = await User.get_transactions
@@ -298,4 +332,9 @@ module.exports.ledger_post = async (req, res) => {
    const userTransactions = await User.get_transactions
    res.send(userTransactions)
     
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> 5c19161c347f319e56aec8a1c66040afebe1e69b

@@ -59,7 +59,7 @@ form{
   padding: 30px;
   box-shadow: 1px 2px 3px rgba(0,0,0,0.1);
   border-radius: 10px;
-  background: aliceblue;
+  background: rgba(240, 248, 255, 0.562);
   align-content: center;
 }
 input{
@@ -86,6 +86,12 @@ button{
   display: block;
   padding: 10px 16px;
   letter-spacing: 2px;
+}
+
+#delete_profile {
+  background: #ffffff00;
+  color: #2635b9;
+  
 }
 .error{
   color: rgb(189, 48, 48);
@@ -283,7 +289,11 @@ body {
   text-align: left;
   padding-bottom: 20px;
   margin: 40px;
+<<<<<<< HEAD
   padding-right: 10px;
+=======
+  padding-right: 20px;
+>>>>>>> 5c19161c347f319e56aec8a1c66040afebe1e69b
   white-space: nowrap; 
 }
 
@@ -294,7 +304,11 @@ body {
   
 
 }
+<<<<<<< HEAD
 #ledger_data {
+=======
+#ledger_data { 
+>>>>>>> 5c19161c347f319e56aec8a1c66040afebe1e69b
   text-align: left;
   padding-right: 10px;
   margin: auto;
