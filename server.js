@@ -14,13 +14,13 @@ const methodOverride = require('method-override')
 const bodyParser = require('body-parser');
 
 //Imported middleware
-const { requireAuth, checkUser } = require('./middleware/authMiddleware')
+const { requireAuth, checkUser, checkTransactions } = require('./middleware/authMiddleware')
 
 
 //Routers
 const authRoutes = require('./routes/authRoutes')
-const userRoutes = require('./routes/users/users')
-const homeRoutes = require('./routes/homeRoutes')
+
+
 
 
 
@@ -50,7 +50,9 @@ app.use (cookieParser());
 
 
 // Encryption
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const { collection } = require('./model/user');
+const user = require('./model/user');
 
 
 // app
@@ -63,9 +65,13 @@ app.set('views,', __dirname + '/views')
 app.set('layout', 'layouts/layout')
 
 //Dependency implementation
+
+// The body-parser middleware to parse form data 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 app.use(expressLayouts)
+
 app.use(methodOverride('_method '))
 app.use(express.static('public'))
 app.use(express.json())
@@ -75,20 +81,27 @@ app.use(cors());
 
 // routes
 
+//Check user data on all routes
 app.get('*', checkUser)
+
 app.get('/', (req, res) => res.render('home_index.ejs'));
 app.get('/wallet', requireAuth, (req, res) => res.render('wallet.ejs'))
 app.get('/transact', requireAuth, (req, res) => res.render('transact.ejs'))
 app.get('/profile', requireAuth, (req, res) => res.render('profile.ejs'))
-app.get('/update_profile', requireAuth, (req, res) => res.render('update_profile.ejs'))   //unfinished
+app.get('/update_profile', requireAuth, (req, res) => res.render('update_profile.ejs'))  
+
+//get user specific transaction data for ledger
+app.get('/ledger', requireAuth, (req, res) => {
+    const transaction_collection = db.collection('transactions')
+    transaction_collection.find().toArray(function(err, transaction_list) {
+        res.render('ledger.ejs', { 'transactions': transaction_list })
+    })
+})
 
 
 //enable routes
 app.use(authRoutes);
 
-// app.use(homeRoutes)
-
-// app.use(userRoutes)
 
 
 

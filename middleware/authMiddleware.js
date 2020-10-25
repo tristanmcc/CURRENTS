@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 const User = require('../model/user');
+const Transaction = require('../model/transaction');
+const user = require('../model/user');
 
 
 
@@ -45,6 +47,18 @@ const checkUser = (req, res, next) => {
       next();
     }
   };
+
+  // //check transactions
+  // const checkTransactions = (req, res, next) => {
+  //   if (user.name === await Transaction.find({ payer, receiver }));{
+  //     res.locals.transaction = transaction;
+
+    
+  //   } else {
+  //     console.log('no transactions')
+  //   }
+  //   next()
+  //  }
 
   //Middleware for getting a user
 

@@ -67,7 +67,7 @@ input{
   border-radius: 4px;
   border: 1px solid aliceblue;
   font-size: 1em;
-  width: %;
+  width: 90%;
   
 }
 label{
@@ -88,7 +88,7 @@ button{
   letter-spacing: 2px;
 }
 .error{
-  color: #ff0099;
+  color: rgb(189, 48, 48);
   margin: 10px 2px;
   font-size: 0.8em;
   font-weight: bold;
@@ -134,7 +134,7 @@ footer{
 
 
 body {
-  background-image: url(/images/home_bg.jpg);
+  background-image: url(/images/Currents_bg.png);
   height: 100vh;
   background-size: cover;
   background-position: center;
@@ -201,9 +201,32 @@ body {
   color: #ffffff;
   font-family: 'Raleway', sans-serif;
   width: 10%;
-  
   position: absolute;
   top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+}
+
+.main-buttons_3 {
+  margin-top: 30px;
+  border-radius: 36px;
+  background: #2635b9;
+  border:50px;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 0.8em;
+  display: block;
+  padding: 10px 16px;
+  letter-spacing: 2px;
+  text-align: center;
+  color: #ffffff;
+  font-family: 'Raleway', sans-serif;
+  width: 10%;
+  position: absolute;
+  top: 55%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -214,9 +237,11 @@ body {
   background-color: seashell;
   position: absolute;
   padding: 50px;
+  border-radius: 10px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  
     
 }
 
@@ -236,8 +261,67 @@ body {
   color: #ffffff;
   font-size: 14px;
   cursor: pointer;
-  
+  border-radius: 10px;
   margin-left: auto;
   margin-right: auto;
   
+}
+
+#ledger_table {
+  background-color: seashell;
+  position: absolute;
+  border-radius: 10px;
+  width: 800px;
+  padding: 50px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+#ledger_heading {
+  text-align: left;
+  padding-bottom: 20px;
+  margin: 40px;
+  padding-right: 10px;
+  white-space: nowrap; 
+}
+
+.ledger_data {
+  
+  padding-right: 10px;
+  margin: auto;
+  
+
+}
+#ledger_data {
+  text-align: left;
+  padding-right: 10px;
+  margin: auto;
+  
+
+}
+
+#ledger_amount{
+
+    text-align: right;
+}
+
+#ledger_data{
+  white-space: nowrap; 
+}
+
+#date_data {
+  line-height:20px;
+height:40px;
+
+white-space: nowrap;
+/* word-break: break-all; */
+
+
+  
+}
+
+#transaction_number_heading {
+  text-align: left;
 }

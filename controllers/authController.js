@@ -1,8 +1,14 @@
 const User = require('../model/user');
+const Transaction = require('../model/transaction');
+
 const jwt = require('jsonwebtoken');
 
 const getUser = require('../middleware/authMiddleware')
 const checkSpendingCapacity = require('../middleware/authMiddleware')
+
+
+
+
 
 //handle error
 const handleErrors = (err) => {
@@ -17,12 +23,12 @@ const handleErrors = (err) => {
      }
      //incorrect passowrd
 
-     if (err.message === 'incorrect password') {
-        errors.email = 'that password is not correct'
+     if (err.message === 'Incorrect password') {
+        errors.password = 'Incorrect password'
     }
-     //duplicate error code
+     //duplicate email error code
      if (err.code === 11000) {
-         errors.password = 'that email is already registered';
+         errors.email = 'that email is already registered';
          return errors;
      }
 
@@ -143,36 +149,66 @@ module.exports.transact_get = (req, res) => {
 
 //make payment
 module.exports.transact_patch =  async (req, res) => {
-    const { alias, amount } = req.body;
+    const { alias, amount, reference } = req.body;
     const payment = parseInt(amount, 10); 
     const token = req.cookies.jwt //get jwt from cookies
     const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET) //get user ID from token in jwt
     const userId = decodedToken.id //extract user ID
     const beneficiary = await User.transact(alias); //send credits to the beneficiary 
     const user = await User.findById(userId);
+    
 
      if (payment <= user.spendingCapacity ) {
              console.log(user.spendingCapacity  -payment)
     
-    try {
-        
-        // if (payment <= user.spendingCapacity ) {
-        //     console.log(user.spendingCapacity  -payment)
-            
+    try { 
 
         beneficiary.currentBalance += payment;
         beneficiary.totalEarned += payment;
         beneficiary.participation += payment;
         beneficiary.spendingCapacity += payment;
 
-        await beneficiary.save()
-
+        if (beneficiary.peers.includes(user.name)) {
+            
+        } else {
+            beneficiary.peers.push(user.name)
+        };
         
+        beneficiary.transaction_count += 1; 
+        await beneficiary.save()
 
         user.currentBalance -= payment;
         user.totalSpent += payment;
         user.participation += payment;
         user.spendingCapacity -= payment;
+
+        if (user.peers.includes(beneficiary.name)) {            //if user does not exist, then add it to the user and beneficieries list of peers
+            
+        } else {
+            user.peers.push(beneficiary.name)
+        }
+
+        
+        //create transaction in db
+        const payer = user.name;
+        const receiver = beneficiary.name;
+        const payment_amount = payment;
+        const note = reference;
+
+        try {
+
+           await Transaction.create({ 
+                
+                payer,
+                receiver,
+                payment_amount,
+                note })            
+         } catch (err) {
+             const errors = handleErrors(err);
+             
+         }
+
+        user.transaction_count += 1; 
 
         await user.save()
        
@@ -187,14 +223,12 @@ module.exports.transact_patch =  async (req, res) => {
         const errors = handleErrors(err);
         res.status(400).json({ errors });
     }
-}
+    console.log
+    }
 else {
     res.send("Insufficient spending capacity")
     // res.redirect('/transact')
-}
-    
-    
-
+    }
 }
 
 //Show update profile page
@@ -250,4 +284,18 @@ module.exports.update_patch =  async  (req, res) => {
         console.log(err)
     }
 
+}
+
+module.exports.ledger_get = async (req, res) => {
+
+    const userTransactions = await User.get_transactions
+    res.send(userTransactions)
+     
+ }
+
+module.exports.ledger_post = async (req, res) => {
+
+   const userTransactions = await User.get_transactions
+   res.send(userTransactions)
+    
 }

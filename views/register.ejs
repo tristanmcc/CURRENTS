@@ -3,19 +3,16 @@
 <form>
     <h2>Register</h2>
     <label for = "name">Full Name</label>
-    <input type = "text" name="name" required />
+    <input type = "text" name="name"  />
     <div class="name error"></div>
     <label for = "alias">Alias</label>
-    <input type = "text" name="alias" required />
+    <input type = "text" name="alias"  />
     <div class="alias error"></div>
     <label for = "password">Password</label>
-    <input type = "password" name="password" required />
+    <input type = "password" name="password"  />
     <div class="password error"></div>
-    <label for = "confirm_password">Confirm password</label>
-    <input type = "password" name="confirm_password" onchange="check_pass" required />
-    <div class="confirm_password error"></div>
     <label for = "email">Email</label>
-    <input type = "email" name="email" required />
+    <input type = "email" name="email"  />
     <div class="email error"></div>
     <button>Submit</button>
 </form>
@@ -28,22 +25,15 @@
     const passwordError = document.querySelector('.password.error');
     const emailError = document.querySelector('.email.error');
 
-    function check_pass() {
-    if (document.getElementById('password').value ==
-            document.getElementById('confirm_password').value) {
-        document.getElementById('submit').disabled = false;
-    } else {
-        document.getElementById('submit').disabled = true;
-    }
-}
+   
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         //reset errors
 
         nameError.textContent = '';
-        passwordError.textContent = '';
         aliasError.textContent = '';
+        passwordError.textContent = '';
         emailError.textContent = '';
             
         //get the values
@@ -66,8 +56,8 @@
             console.log(data);
             if (data.errors) {
                 nameError.textContent = data.errors.name;
-                passwordError.textContent = data.errors.alais;
-                aliasError.textContent = data.errors.password;
+                aliasError.textContent = data.errors.alias;
+                passwordError.textContent = data.errors.password;
                 emailError.textContent = data.errors.email;
             }
             if (data.user) {
