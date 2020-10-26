@@ -63,23 +63,24 @@
             if (data.errors) {
                 
                 
-                aliasError.textContent = data.errors.password;
+                aliasError.textContent = data.errors.alias;
                 amountError.textContent = data.errors.amount;
-                console.log('there is an error')
+                console.log(data.errors)
+                
             }
-            if (data) {
+            if (data.beneficiary) {
                 
                 console.log(data)
                 window.alert("Transaction successful");
                 location.assign('/');
             } else {
                 console.log('error')
-                window.alert("Transaction failed");
+                
             }
             
         } catch (err) {
             console.log(err);
-            window.alert("Insufficient spending capacity.");
+            window.alert(err);
 
         } 
 

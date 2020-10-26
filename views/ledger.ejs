@@ -24,10 +24,12 @@
               
               <% let transaction_number = 0; %>
                   <% transactions.forEach(function(transaction){ %>
-                     <%transaction_number +=1; %>
+                    
+                     
                      
                     <% if (transaction.payer === user.name || transaction.receiver === user.name) { %>
                     <tr>
+                      <%transaction_number +=1; %>
                       
                   <td id="ledger_data" class = "ledger_data" ><%= transaction_number %></td>  
                   <td id="date_data" class = "ledger_data"><%= transaction.createdAt %></td>  
@@ -38,6 +40,7 @@
                 </tr>
                 <% } %>
                   <% }); %>
+                  
                 
                 
               </tr>

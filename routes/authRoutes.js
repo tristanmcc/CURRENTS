@@ -25,8 +25,6 @@ router.get('/transact', authController.transact_get);
 
 router.post('/transact', authController.transact_patch);
 
-// router.get('/ledger', authController.ledger_get);
-
 router.post('/ledger', authController.ledger_post);
 
 router.delete('/delete_user', authController.user_delete);

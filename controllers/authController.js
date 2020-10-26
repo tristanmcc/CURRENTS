@@ -43,7 +43,7 @@ const handleErrors = (err) => {
      //alias does not exist for transaction
      if (err.message === 'alias does not exist') {
          errors.alias = "The user you are trying to pay does not exist."
-         return errors;
+         
      } 
 
      return errors
@@ -155,8 +155,12 @@ module.exports.transact_patch =  async (req, res) => {
     const token = req.cookies.jwt //get jwt from cookies
     const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET) //get user ID from token in jwt
     const userId = decodedToken.id //extract user ID
+
+    try {
     const beneficiary = await User.transact(alias); //send credits to the beneficiary 
     const user = await User.findById(userId);
+
+    
     
 
      if (payment <= user.spendingCapacity ) {
@@ -229,6 +233,12 @@ module.exports.transact_patch =  async (req, res) => {
 else {
     res.send("Insufficient spending capacity")
     // res.redirect('/transact')
+    }
+
+    } catch (err) {
+        const errors = handleErrors(err);
+        res.status(400).json({ errors });
+        
     }
 }
 
