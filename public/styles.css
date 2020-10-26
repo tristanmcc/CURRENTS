@@ -289,7 +289,11 @@ body {
   text-align: left;
   padding-bottom: 20px;
   margin: 40px;
+<<<<<<< HEAD
+  padding-right: 10px;
+=======
   padding-right: 20px;
+>>>>>>> 5c19161c347f319e56aec8a1c66040afebe1e69b
   white-space: nowrap; 
 }
 
@@ -300,7 +304,11 @@ body {
   
 
 }
+<<<<<<< HEAD
+#ledger_data {
+=======
 #ledger_data { 
+>>>>>>> 5c19161c347f319e56aec8a1c66040afebe1e69b
   text-align: left;
   padding-right: 10px;
   margin: auto;

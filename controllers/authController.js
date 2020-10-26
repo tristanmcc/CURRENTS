@@ -11,6 +11,10 @@ const user = require('../model/user');
 
 
 
+
+
+
+
 //handle error
 const handleErrors = (err) => {
      console.log(err.message, err.code)
@@ -297,6 +301,8 @@ module.exports.update_patch =  async  (req, res) => {
 
 }
 
+<<<<<<< HEAD
+=======
 module.exports.user_delete = async (req, res) => {
     
     
@@ -323,6 +329,7 @@ module.exports.user_delete = async (req, res) => {
 
 
 
+>>>>>>> 5c19161c347f319e56aec8a1c66040afebe1e69b
 module.exports.ledger_get = async (req, res) => {
 
     const userTransactions = await User.get_transactions
@@ -335,5 +342,9 @@ module.exports.ledger_post = async (req, res) => {
    const userTransactions = await User.get_transactions
    res.send(userTransactions)
     
+<<<<<<< HEAD
+}
+=======
 }
 
+>>>>>>> 5c19161c347f319e56aec8a1c66040afebe1e69b
