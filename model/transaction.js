@@ -9,7 +9,7 @@ const transactionSchema = new mongoose.Schema({
         
     },
     
-    payer: {
+    transactor: {
         type: String
     },
 
@@ -34,9 +34,9 @@ const transactionSchema = new mongoose.Schema({
 
 
 
-transactionSchema.statics.get_transactions = async function(payer, receiver, res) {
-    const transaction = await this.find({ payer, receiver });
-    if (payer || receiver) {
+transactionSchema.statics.get_transactions = async function(transactor, receiver, res) {
+    const transaction = await this.find({ transactor, receiver });
+    if (transactor || receiver) {
         
         // const updatedUser = res.beneficiery.save()
         return transaction

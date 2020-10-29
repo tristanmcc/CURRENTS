@@ -50,7 +50,7 @@ const checkUser = (req, res, next) => {
 
   // //check transactions
   // const checkTransactions = (req, res, next) => {
-  //   if (user.name === await Transaction.find({ payer, receiver }));{
+  //   if (user.name === await Transaction.find({ transactor, receiver }));{
   //     res.locals.transaction = transaction;
 
     

@@ -25,7 +25,7 @@ const authRoutes = require('./routes/authRoutes')
 
 
 //Connect to Mongo DB
-const dbURI = 'mongodb+srv://Dev_1:Currents123@cluster0.nwvcr.mongodb.net/Currents-db?retryWrites=true&w=majority';
+const dbURI = process.env.dbURI;
 
 mongoose.connect(dbURI, { 
     useNewUrlParser: true,

@@ -27,11 +27,8 @@ router.post('/transact', authController.transact_patch);
 
 router.post('/ledger', authController.ledger_post);
 
-<<<<<<< HEAD
-=======
 router.delete('/delete_user', authController.user_delete);
 
->>>>>>> 5c19161c347f319e56aec8a1c66040afebe1e69b
 
 
 module.exports = router;

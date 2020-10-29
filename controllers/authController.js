@@ -199,7 +199,7 @@ module.exports.transact_patch =  async (req, res) => {
 
         
         //create transaction in db
-        const payer = user.name;
+        const transactor = user.name;
         const receiver = beneficiary.name;
         const payment_amount = payment;
         const note = reference;
@@ -208,7 +208,7 @@ module.exports.transact_patch =  async (req, res) => {
 
            await Transaction.create({ 
                 
-                payer,
+            transactor,
                 receiver,
                 payment_amount,
                 note })            
@@ -301,8 +301,6 @@ module.exports.update_patch =  async  (req, res) => {
 
 }
 
-<<<<<<< HEAD
-=======
 module.exports.user_delete = async (req, res) => {
     
     
@@ -329,7 +327,6 @@ module.exports.user_delete = async (req, res) => {
 
 
 
->>>>>>> 5c19161c347f319e56aec8a1c66040afebe1e69b
 module.exports.ledger_get = async (req, res) => {
 
     const userTransactions = await User.get_transactions
@@ -342,9 +339,5 @@ module.exports.ledger_post = async (req, res) => {
    const userTransactions = await User.get_transactions
    res.send(userTransactions)
     
-<<<<<<< HEAD
-}
-=======
 }
 
->>>>>>> 5c19161c347f319e56aec8a1c66040afebe1e69b
