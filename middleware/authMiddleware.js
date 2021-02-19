@@ -48,19 +48,7 @@ const checkUser = (req, res, next) => {
     }
   };
 
-  // //check transactions
-  // const checkTransactions = (req, res, next) => {
-  //   if (user.name === await Transaction.find({ transactor, receiver }));{
-  //     res.locals.transaction = transaction;
-
-    
-  //   } else {
-  //     console.log('no transactions')
-  //   }
-  //   next()
-  //  }
-
-  //Middleware for getting a user
+ 
 
 async function getUser(req, res, next) {
     let user 
@@ -77,7 +65,7 @@ async function getUser(req, res, next) {
     next()
 }
 
-// check spending capacity
+// check spending the customers available spending capacity
 const checkSpendingCapacity = (req, res, next) => {
   const token = req.cookies.jwt;
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decodedToken) => {

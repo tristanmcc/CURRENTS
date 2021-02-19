@@ -32,8 +32,6 @@ const transactionSchema = new mongoose.Schema({
 
 }, {timestamps: true});
 
-
-
 transactionSchema.statics.get_transactions = async function(transactor, receiver, res) {
     const transaction = await this.find({ transactor, receiver });
     if (transactor || receiver) {
